@@ -1,0 +1,15 @@
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.csprojAssemblyReference.cache
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.ChooseGroupForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.ChooseGroupsForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.CreateSheduleForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.DisciplineForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.GroupForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.RoomsForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.SheduleSettingForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.EdicationLoadForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.LessonForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.TeachersForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.MainForm.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.Properties.Resources.resources
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.csproj.GenerateResource.cache
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MyShedule\obj\x64\Debug\MyShedule.csproj.CoreCompileInputs.cache

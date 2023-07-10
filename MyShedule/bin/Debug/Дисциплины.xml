@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<dsShedule xmlns="http://tempuri.org/dsEducLoad.xsd">
+  <Discipline>
+    <Id>24</Id>
+    <Name>Современные ОС</Name>
+  </Discipline>
+  <Discipline>
+    <Id>25</Id>
+    <Name>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Name>
+  </Discipline>
+  <Discipline>
+    <Id>26</Id>
+    <Name>Микропроцессоры</Name>
+  </Discipline>
+  <Discipline>
+    <Id>27</Id>
+    <Name>Алгоритмы и структуры данных</Name>
+  </Discipline>
+  <Discipline>
+    <Id>28</Id>
+    <Name>Проф. Инояз. Коммун.</Name>
+  </Discipline>
+  <Discipline>
+    <Id>29</Id>
+    <Name>Технологическое предпринимательство</Name>
+  </Discipline>
+  <Discipline>
+    <Id>30</Id>
+    <Name>Машинное обучение</Name>
+  </Discipline>
+</dsShedule>

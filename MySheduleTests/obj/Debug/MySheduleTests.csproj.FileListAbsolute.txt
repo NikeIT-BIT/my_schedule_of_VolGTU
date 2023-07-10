@@ -1,0 +1,29 @@
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MySheduleTests.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MySheduleTests.pdb
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.exe
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\ExportToRTF.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Yogesh.ExcelXml.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Yogesh.Extensions.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.pdb
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.exe.config
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csprojAssemblyReference.cache
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csproj.CoreCompileInputs.cache
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csproj.CopyComplete
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.dll
+C:\Users\Valera Petrov\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.pdb
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MySheduleTests.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MySheduleTests.pdb
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.exe
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\ExportToRTF.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Yogesh.ExcelXml.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\Yogesh.Extensions.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.pdb
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\MyShedule.exe.config
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csproj.AssemblyReference.cache
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csproj.CoreCompileInputs.cache
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.csproj.CopyComplete
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.dll
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MySheduleTests\obj\Debug\MySheduleTests.pdb

@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<dsShedule xmlns="http://tempuri.org/dsEducLoad.xsd">
+  <Group>
+    <Id>17</Id>
+    <Name>ЭВМ-1.1</Name>
+  </Group>
+  <Group>
+    <Id>18</Id>
+    <Name>ЭВМ-1.2</Name>
+  </Group>
+  <Group>
+    <Id>22</Id>
+    <Name>ЭВМ-1.3п</Name>
+  </Group>
+</dsShedule>
