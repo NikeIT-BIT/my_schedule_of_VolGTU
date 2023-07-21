@@ -13,9 +13,11 @@ namespace MyShedule
     {
         public List<SheduleLessonType> LessonTypes;
         public List<SheduleTeacher> Teachers;
+        public List<SheduleDiscipline> Disciplines;
+        public List<SheduleGroup> Groups;
         public dsShedule SheduleDataSet;
 
-        public EdicationLoadForm(List<SheduleTeacher> tch)
+        public EdicationLoadForm(List<SheduleTeacher> tch, List<SheduleDiscipline> dscp, List<SheduleGroup> grp)
         {
             InitializeComponent();
 
@@ -24,6 +26,8 @@ namespace MyShedule
             this.Load += new EventHandler(EdicationLoadForm_Load);
 
             Teachers = tch;
+            Disciplines = dscp;
+            Groups = grp;
         }
 
         void EdicationLoadForm_Load(object sender, EventArgs e)
@@ -38,7 +42,7 @@ namespace MyShedule
         void EdicationLoadForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Сохранить перед закрытием? ", "внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == System.Windows.Forms.DialogResult.OK)
+            if (dr == DialogResult.OK)
                 Save();
         }
 
@@ -69,19 +73,27 @@ namespace MyShedule
             cmbClmn.DataSource = bs;
             dgvEducationLoad.Columns.Add(cmbClmn);
 
-            clmn = new DataGridViewTextBoxColumn();
-            clmn.DataPropertyName = "Discipline";
-            clmn.Name = "discipline";
-            clmn.HeaderText = "Дисциплина";
-            clmn.Width = 200;
-            dgvEducationLoad.Columns.Add(clmn);
+            cmbClmn = new DataGridViewComboBoxColumn();
+            cmbClmn.DataPropertyName = "Discipline";
+            cmbClmn.Name = "discipline";
+            cmbClmn.HeaderText = "Дисциплина";
+            cmbClmn.DisplayMember = "Name";
+            cmbClmn.ValueMember = "Name";
+            bs = new BindingSource();
+            bs.DataSource = Disciplines;
+            cmbClmn.DataSource = bs;
+            dgvEducationLoad.Columns.Add(cmbClmn);
 
-            clmn = new DataGridViewTextBoxColumn();
-            clmn.DataPropertyName = "Group";
-            clmn.Name = "group";
-            clmn.HeaderText = "Группа";
-            clmn.Width = 250;
-            dgvEducationLoad.Columns.Add(clmn);
+            cmbClmn = new DataGridViewComboBoxColumn();
+            cmbClmn.DataPropertyName = "Group";
+            cmbClmn.Name = "group";
+            cmbClmn.HeaderText = "Группа";
+            cmbClmn.DisplayMember = "Name";
+            cmbClmn.ValueMember = "Name";
+            bs = new BindingSource();
+            bs.DataSource = Groups;
+            cmbClmn.DataSource = bs;
+            dgvEducationLoad.Columns.Add(cmbClmn);
 
             clmn = new DataGridViewTextBoxColumn();
             clmn.DataPropertyName = "HoursSem";
