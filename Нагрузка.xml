@@ -1,0 +1,339 @@
+<?xml version="1.0" standalone="yes"?>
+<dsShedule xmlns="http://tempuri.org/dsEducLoad.xsd">
+  <Education>
+    <Id>10</Id>
+    <Teacher>Абдрахманов Д.П.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>11</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>12</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>13</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>14</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>15</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>16</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>17</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структуры данных</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>18</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структуры данных</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>19</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>20</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>21</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>22</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>24</Id>
+    <Teacher>Корженевская О.</Teacher>
+    <Discipline>Технологическое предпринимательство</Discipline>
+    <Group>ЭВМ-1.1</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>25</Id>
+    <Teacher>Абдрахманов Д.П.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>26</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>27</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>28</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>29</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>30</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>31</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>32</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структуры данных</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>33</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структуры данных</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>34</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>35</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>36</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>37</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>38</Id>
+    <Teacher>Корженевская О.</Teacher>
+    <Discipline>Технологическое предпринимательство</Discipline>
+    <Group>ЭВМ-1.2</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>39</Id>
+    <Teacher>Абдрахманов Д.П.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>40</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>41</Id>
+    <Teacher>Андреев А.Е.</Teacher>
+    <Discipline>Современные ОС</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>42</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>43</Id>
+    <Teacher>Кравченя П.Д.</Teacher>
+    <Discipline>ПРОГР. ОБЕСП. ИНФОКОМ. С-М</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>44</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>45</Id>
+    <Teacher>Конченков В.И.</Teacher>
+    <Discipline>Микропроцессоры</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>46</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структуры данных</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>47</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>48</Id>
+    <Teacher>Пром Н.А.</Teacher>
+    <Discipline>Проф. Инояз. Коммун.</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>2</LessonType>
+  </Education>
+  <Education>
+    <Id>49</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+  <Education>
+    <Id>50</Id>
+    <Teacher>Гурьев В.В.</Teacher>
+    <Discipline>Машинное обучение</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>8</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>51</Id>
+    <Teacher>Корженевская О.</Teacher>
+    <Discipline>Технологическое предпринимательство</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>0</LessonType>
+  </Education>
+  <Education>
+    <Id>52</Id>
+    <Teacher>Крыжановский Д.И.</Teacher>
+    <Discipline>Алгоритмы и структура данных</Discipline>
+    <Group>ЭВМ-1.3п</Group>
+    <HoursSem>16</HoursSem>
+    <LessonType>1</LessonType>
+  </Education>
+</dsShedule>

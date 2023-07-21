@@ -40,23 +40,7 @@
         <xs:element name="Teacher" msprop:Generator_TableClassName="TeacherDataTable" msprop:Generator_TableVarName="tableTeacher" msprop:Generator_TablePropName="Teacher" msprop:Generator_RowDeletingName="TeacherRowDeleting" msprop:Generator_UserTableName="Teacher" msprop:Generator_RowChangingName="TeacherRowChanging" msprop:Generator_RowEvHandlerName="TeacherRowChangeEventHandler" msprop:Generator_RowDeletedName="TeacherRowDeleted" msprop:Generator_RowEvArgName="TeacherRowChangeEvent" msprop:Generator_RowChangedName="TeacherRowChanged" msprop:Generator_RowClassName="TeacherRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
-              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Group" msprop:Generator_TableClassName="GroupDataTable" msprop:Generator_TableVarName="tableGroup" msprop:Generator_TablePropName="Group" msprop:Generator_RowDeletingName="GroupRowDeleting" msprop:Generator_UserTableName="Group" msprop:Generator_RowChangingName="GroupRowChanging" msprop:Generator_RowEvHandlerName="GroupRowChangeEventHandler" msprop:Generator_RowDeletedName="GroupRowDeleted" msprop:Generator_RowEvArgName="GroupRowChangeEvent" msprop:Generator_RowChangedName="GroupRowChanged" msprop:Generator_RowClassName="GroupRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
-              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Discipline" msprop:Generator_TableClassName="DisciplineDataTable" msprop:Generator_TableVarName="tableDiscipline" msprop:Generator_TablePropName="Discipline" msprop:Generator_RowDeletingName="DisciplineRowDeleting" msprop:Generator_UserTableName="Discipline" msprop:Generator_RowChangingName="DisciplineRowChanging" msprop:Generator_RowEvHandlerName="DisciplineRowChangeEventHandler" msprop:Generator_RowDeletedName="DisciplineRowDeleted" msprop:Generator_RowEvArgName="DisciplineRowChangeEvent" msprop:Generator_RowChangedName="DisciplineRowChanged" msprop:Generator_RowClassName="DisciplineRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

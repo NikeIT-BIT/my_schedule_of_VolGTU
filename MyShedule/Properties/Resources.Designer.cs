@@ -103,16 +103,6 @@ namespace MyShedule.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap book {
-            get {
-                object obj = ResourceManager.GetObject("book", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
@@ -353,26 +343,6 @@ namespace MyShedule.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap page_white_excel {
-            get {
-                object obj = ResourceManager.GetObject("page_white_excel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap page_white_text {
-            get {
-                object obj = ResourceManager.GetObject("page_white_text", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap page_white_word {
             get {
                 object obj = ResourceManager.GetObject("page_white_word", resourceCulture);
@@ -506,16 +476,6 @@ namespace MyShedule.Properties {
         internal static System.Drawing.Bitmap time_go {
             get {
                 object obj = ResourceManager.GetObject("time_go", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap user_suit {
-            get {
-                object obj = ResourceManager.GetObject("user_suit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

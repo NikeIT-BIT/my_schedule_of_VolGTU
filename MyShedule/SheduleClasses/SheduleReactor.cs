@@ -172,7 +172,7 @@ namespace MyShedule
             this.Results.Add(result);
         }
 
-        public virtual string GetItemInfo(LoadItem item)
+        protected virtual string GetItemInfo(LoadItem item)
         {
             string groups = String.Empty;
             foreach(string group in item.Groups)
@@ -355,7 +355,7 @@ namespace MyShedule
         }
 
         //Можно ли проводить данный вид занятия в этой аудитории
-        public bool PossibleAppointLessonRoom(SheduleRoom room, LessonType type){
+        private bool PossibleAppointLessonRoom(SheduleRoom room, LessonType type){
             return type == LessonType.Lection ? room.Lection : type == LessonType.Labwork ? 
                 room.LabWork : type == LessonType.Practice ? room.Practice : true;
         }
