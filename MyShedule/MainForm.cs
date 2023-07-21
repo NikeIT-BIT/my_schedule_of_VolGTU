@@ -256,6 +256,7 @@ namespace MyShedule
             frmLesson.Employments = Shedule.Employments;
             frmLesson.Adapter = EducationAdapter;
             frmLesson.Rooms = Rooms;
+            frmLesson.curClmn = dgvShedule.CurrentCell.ColumnIndex;
 
             frmLesson.Time1 = Tag.Time1;
             frmLesson.Lesson1 = Shedule.GetLesson(Tag.Time1, Tag.Room1);
