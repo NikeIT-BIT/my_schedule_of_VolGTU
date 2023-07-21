@@ -344,10 +344,13 @@ namespace MyShedule
                 {
                     DateTime date = Convert.ToDateTime(CurrentDate.Text);
                     CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
-                    for (int i = 0; i < Lesson1.Dates.Count; i++)
+                    if (Lesson1 != null)
                     {
-                        if (Lesson1.Dates[i] == date)
-                            Lesson1.Dates[i] = dtpDate1.Value;
+                        for (int i = 0; i < Lesson1.Dates.Count; i++)
+                        {
+                            if (Lesson1.Dates[i] == date)
+                                Lesson1.Dates[i] = dtpDate1.Value;
+                        }
                     }
                 }
             }
