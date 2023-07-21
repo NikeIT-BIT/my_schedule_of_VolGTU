@@ -18,7 +18,6 @@ namespace MyShedule
         }
 
         public SheduleWeeks Shedule;
-        public dsShedule ds;
         public EducationLoadAdapter Adapter;
         public Employments Employments;
         public List<SheduleRoom> Rooms;
@@ -26,7 +25,6 @@ namespace MyShedule
         public SheduleTime Time2;
         public SheduleLesson Lesson1;
         public SheduleLesson Lesson2;
-        public int curClmn;
 
         void LessonForm_Load(object sender, EventArgs e)
         {
@@ -52,25 +50,6 @@ namespace MyShedule
             SetDatesUI(lvDates1, Lesson1);
             SetDatesUI(lvDates2, Lesson2);
 
-            dtpDate1.Value = Shedule.Days[curClmn - 2].Dates[0];
-            dtpDate2.Value = Shedule.Days[curClmn - 2].Dates[1];
-
-            if (lvDates2.Items.Count == 0 && lvDates1.Items.Count == 0)
-            {
-                int counter = 0;
-                foreach (DateTime date in Shedule.Days[curClmn - 2].Dates)
-                {
-                    if (counter % 2 == 0)
-                    {
-                        lvDates1.Items.Add(new ListViewItem(String.Format("{0:dd} {0:MMMM} {0:yyyy}", date)));
-                    }
-                    else
-                    {
-                        lvDates2.Items.Add(new ListViewItem(String.Format("{0:dd} {0:MMMM} {0:yyyy}", date)));
-                    }
-                    counter++;
-                }
-            }
         }
 
         private void SetDatesUI(ListView dates, SheduleLesson lesson)
@@ -87,7 +66,7 @@ namespace MyShedule
             
         }
 
-        private void SetGroupsUI(ListView ChooiceGroups, ListView AccessGroups,
+        private void SetGroupsUI(ListView ChooiceGroups, ListView AccessGroups, 
             SheduleLesson lesson, SheduleTime time)
         {
             List<string> AccGroups = new List<string>();
@@ -329,26 +308,20 @@ namespace MyShedule
 
         private void btnAddDate1_Click(object sender, EventArgs e)
         {
-            if (Lesson1 != null)
-            {
-                Lesson1.Dates.Add(dtpDate1.Value);
-                lvDates1.Items.Add(new ListViewItem(String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value)));
-            }
+            Lesson1.Dates.Add(dtpDate1.Value);
+            lvDates1.Items.Add(new ListViewItem(String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value)));
         }
 
         private void btnEditDate1_Click(object sender, EventArgs e)
         {
             if (CurrentDate != null)
             {
-                if (CurrentDate.Text != "")
+                DateTime date = Convert.ToDateTime(CurrentDate.Text);
+                CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
+                for (int i = 0; i < Lesson1.Dates.Count; i++ )
                 {
-                    DateTime date = Convert.ToDateTime(CurrentDate.Text);
-                    CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
-                    for (int i = 0; i < Lesson1.Dates.Count; i++)
-                    {
-                        if (Lesson1.Dates[i] == date)
-                            Lesson1.Dates[i] = dtpDate1.Value;
-                    }
+                    if (Lesson1.Dates[i] == date)
+                        Lesson1.Dates[i] = dtpDate1.Value;
                 }
             }
         }
@@ -360,50 +333,7 @@ namespace MyShedule
                 DateTime date = Convert.ToDateTime(lvDates1.SelectedItems[0].Text);
                 ListViewItem item = lvDates1.SelectedItems[0];
                 lvDates1.Items.Remove(item);
-                if (Lesson1 != null)
-                {
-                    Lesson1.Dates.Remove(date);
-                }
-            }
-        }
-
-        private void btnAddDate2_Click(object sender, EventArgs e)
-        {
-            if (Lesson2 != null)
-            {
-                Lesson2.Dates.Add(dtpDate2.Value);
-                lvDates2.Items.Add(new ListViewItem(String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate2.Value)));
-            }
-        }
-
-        private void btnEditDate2_Click(object sender, EventArgs e)
-        {
-            if (CurrentDate != null)
-            {
-                if (CurrentDate.Text != "")
-                {
-                    DateTime date = Convert.ToDateTime(CurrentDate.Text);
-                    CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
-                    for (int i = 0; i < Lesson1.Dates.Count; i++)
-                    {
-                        if (Lesson2.Dates[i] == date)
-                            Lesson2.Dates[i] = dtpDate2.Value;
-                    }
-                }
-            }
-        }
-
-        private void btnRemoveDate2_Click(object sender, EventArgs e)
-        {
-            if (lvDates2.SelectedItems.Count > 0)
-            {
-                DateTime date = Convert.ToDateTime(lvDates2.SelectedItems[0].Text);
-                ListViewItem item = lvDates2.SelectedItems[0];
-                lvDates2.Items.Remove(item);
-                if (Lesson2 != null)
-                {
-                    Lesson2.Dates.Remove(date);
-                }
+                Lesson1.Dates.Remove(date);
             }
         }
 

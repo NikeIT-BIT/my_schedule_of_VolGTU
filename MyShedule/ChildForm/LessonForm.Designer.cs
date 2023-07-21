@@ -474,7 +474,6 @@
             this.btnRemoveDate2.Size = new System.Drawing.Size(20, 20);
             this.btnRemoveDate2.TabIndex = 37;
             this.btnRemoveDate2.UseVisualStyleBackColor = true;
-            this.btnRemoveDate2.Click += new System.EventHandler(this.btnRemoveDate2_Click);
             // 
             // lvDates2
             // 
@@ -494,7 +493,6 @@
             this.btnAddDate2.Size = new System.Drawing.Size(20, 20);
             this.btnAddDate2.TabIndex = 34;
             this.btnAddDate2.UseVisualStyleBackColor = true;
-            this.btnAddDate2.Click += new System.EventHandler(this.btnAddDate2_Click);
             // 
             // dtpDate2
             // 
@@ -513,7 +511,6 @@
             this.btnEditDate2.Size = new System.Drawing.Size(20, 20);
             this.btnEditDate2.TabIndex = 35;
             this.btnEditDate2.UseVisualStyleBackColor = true;
-            this.btnEditDate2.Click += new System.EventHandler(this.btnEditDate2_Click);
             // 
             // groupBox6
             // 

@@ -57,23 +57,7 @@ namespace MyShedule
                 }
 
                 DateCounter = TempDate + TimeSpan.FromDays(7);
-            }
 
-            if (FirstDaySem.Month == 2)
-            {
-                for (int i = 0; i < Setting.CountWeeksShedule; i++)
-                {
-                    for (int day = i * Setting.CountDaysEducationWeek * 2; 
-                        day < Setting.CountDaysEducationWeek + (i * Setting.CountDaysEducationWeek * 2); day++)
-                    {
-                        SheduleDay bufferDay = Days[day];
-                        Week bufferWeek = Days[day + Setting.CountDaysEducationWeek].Week;
-                        Days[day] = Days[day + Setting.CountDaysEducationWeek];
-                        Days[day].Week = bufferDay.Week;
-                        Days[day + Setting.CountDaysEducationWeek] = bufferDay;
-                        Days[day + Setting.CountDaysEducationWeek].Week = bufferWeek;
-                    }
-                }
             }
         }
 
@@ -85,8 +69,7 @@ namespace MyShedule
         /// <summary> Получить расписание занятия </summary>
         public SheduleLesson GetLesson(SheduleTime Time, string Room) {
             IEnumerable<SheduleLesson> query = Lessons.Where(x => x.Time == Time && x.Room == Room);
-            SheduleLesson param  = query.Count() > 0 ? query.First() : null;
-            return param;
+            return query.Count() > 0 ? query.First() : null;
         }
 
         /// <summary> Найти расписание занятия из списка занятий</summary>

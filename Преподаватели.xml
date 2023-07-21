@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<dsShedule xmlns="http://tempuri.org/dsEducLoad.xsd">
+  <Teacher>
+    <Id>-20</Id>
+    <Name>Конченков В.И.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-21</Id>
+    <Name>Крыжановский Д.И.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-22</Id>
+    <Name>Пром Н.А.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-23</Id>
+    <Name>Андреев А.Е.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-24</Id>
+    <Name>Абдрахманов Д.П.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-25</Id>
+    <Name>Кравченя П.Д.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-26</Id>
+    <Name>Гурьев В.В.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-27</Id>
+    <Name>Яновский Т.А.</Name>
+  </Teacher>
+  <Teacher>
+    <Id>-29</Id>
+    <Name>Корженевская О.</Name>
+  </Teacher>
+</dsShedule>

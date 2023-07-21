@@ -60,8 +60,6 @@ namespace MyShedule
 
         private static void InitLeftColumns(DataGridView table)
         {
-
-            
             DataGridViewCellStyle style = new DataGridViewCellStyle()
             { 
                 BackColor = Color.LightYellow,                                                                        
@@ -74,7 +72,7 @@ namespace MyShedule
                 Width = 150,
                 ReadOnly = true,
                 Name = "name",
-                HeaderText = "Преподаватель".ToUpper(),
+                HeaderText = "Преподователь".ToUpper(),
                 SortMode = DataGridViewColumnSortMode.NotSortable,
                 DefaultCellStyle = style
             });
@@ -98,11 +96,9 @@ namespace MyShedule
             table.AllowUserToAddRows = false;
             table.RowHeadersWidth = 25;
             table.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            table.RowsDefaultCellStyle.Font = new Font(FontFamily.GenericSansSerif, 9);
-
+            table.RowsDefaultCellStyle.Font = new System.Drawing.Font(FontFamily.GenericSansSerif, 9);
         }
 
-     
         #endregion
 
         #region FILL DATAGRIDVIEW

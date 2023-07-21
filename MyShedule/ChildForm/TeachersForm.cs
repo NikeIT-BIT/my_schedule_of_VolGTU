@@ -56,7 +56,7 @@ namespace MyShedule
             clmn.DataPropertyName = "Name";
             clmn.Name = "name";
             clmn.HeaderText = "Преподаватель";
-            clmn.Width = clmn.HeaderText.Length*8;
+            clmn.Width = 80;
             dgvTeachers.Columns.Add(clmn);
 
             BindingSource source = new BindingSource();
@@ -139,5 +139,9 @@ namespace MyShedule
             }
         }
 
+        private void dgvTeachers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

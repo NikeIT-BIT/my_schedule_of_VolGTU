@@ -1,0 +1,16 @@
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.csproj.AssemblyReference.cache
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.csproj.SuggestedBindingRedirects.cache
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.ChooseGroupForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.ChooseGroupsForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.CreateSheduleForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.DisciplineForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.GroupForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.RoomsForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.SheduleSettingForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.EdicationLoadForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.LessonForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.TeachersForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.MainForm.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.Properties.Resources.resources
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.csproj.GenerateResource.cache
+C:\Users\treyy\OneDrive\Рабочий стол\MyShedule\MyShedule\obj\x64\Release\MyShedule.csproj.CoreCompileInputs.cache

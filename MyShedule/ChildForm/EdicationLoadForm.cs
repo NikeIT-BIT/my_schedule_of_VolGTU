@@ -13,10 +13,9 @@ namespace MyShedule
     {
         public List<SheduleLessonType> LessonTypes;
         public List<SheduleTeacher> Teachers;
-        public List<SheduleDiscipline> Disciplines;
         public dsShedule SheduleDataSet;
 
-        public EdicationLoadForm(List<SheduleTeacher> tch, List<SheduleDiscipline> dsp)
+        public EdicationLoadForm(List<SheduleTeacher> tch)
         {
             InitializeComponent();
 
@@ -25,7 +24,6 @@ namespace MyShedule
             this.Load += new EventHandler(EdicationLoadForm_Load);
 
             Teachers = tch;
-            Disciplines = dsp;
         }
 
         void EdicationLoadForm_Load(object sender, EventArgs e)
@@ -52,6 +50,14 @@ namespace MyShedule
             clmn.Visible = false;
             dgvEducationLoad.Columns.Add(clmn);
 
+            /*
+            clmn = new DataGridViewTextBoxColumn();
+            clmn.DataPropertyName = "Teacher";
+            clmn.Name = "teacher";
+            clmn.HeaderText = "Преподаватель";
+            dgvEducationLoad.Columns.Add(clmn);
+             */
+
             DataGridViewComboBoxColumn cmbClmn = new DataGridViewComboBoxColumn();
             cmbClmn.DataPropertyName = "Teacher";
             cmbClmn.Name = "teacher";
@@ -63,16 +69,12 @@ namespace MyShedule
             cmbClmn.DataSource = bs;
             dgvEducationLoad.Columns.Add(cmbClmn);
 
-            cmbClmn = new DataGridViewComboBoxColumn();
-            cmbClmn.DataPropertyName = "Discipline";
-            cmbClmn.Name = "discipline";
-            cmbClmn.HeaderText = "Дисциплина";
-            cmbClmn.DisplayMember = "Name";
-            cmbClmn.ValueMember = "Name";
-            bs = new BindingSource();
-            bs.DataSource = Disciplines;
-            cmbClmn.DataSource = bs;
-            dgvEducationLoad.Columns.Add(cmbClmn);
+            clmn = new DataGridViewTextBoxColumn();
+            clmn.DataPropertyName = "Discipline";
+            clmn.Name = "discipline";
+            clmn.HeaderText = "Дисциплина";
+            clmn.Width = 200;
+            dgvEducationLoad.Columns.Add(clmn);
 
             clmn = new DataGridViewTextBoxColumn();
             clmn.DataPropertyName = "Group";
@@ -80,14 +82,6 @@ namespace MyShedule
             clmn.HeaderText = "Группа";
             clmn.Width = 250;
             dgvEducationLoad.Columns.Add(clmn);
-           //dgvEducationLoad.DoubleClick += new EventHandler(dgvEducationLoad_DoubleClick);
-
-            DataGridViewButtonColumn btnClmn = new DataGridViewButtonColumn();
-            btnClmn.Width = 25;
-            btnClmn.MinimumWidth = 25;
-            btnClmn.Text = "...";
-            dgvEducationLoad.Columns.Add(btnClmn);
-            dgvEducationLoad.Click += new EventHandler(dgvEducationLoad_DoubleClick);
 
             clmn = new DataGridViewTextBoxColumn();
             clmn.DataPropertyName = "HoursSem";
@@ -114,38 +108,6 @@ namespace MyShedule
             bindingNavigator1.BindingSource = source;
             dgvEducationLoad.RowPrePaint+=new DataGridViewRowPrePaintEventHandler(dgvEducationLoad_RowPrePaint);
             dgvEducationLoad.RowHeadersWidth = 25;
-        }
-
-        void dgvEducationLoad_DoubleClick(object sender, EventArgs e)
-        {
-            if (dgvEducationLoad.CurrentCell.ColumnIndex == 0)
-            {
-                ChooseGroupForm chsGrpForm = new ChooseGroupForm();
-                chsGrpForm.ds = SheduleDataSet;
-
-                if (chsGrpForm.ShowDialog() == System.Windows.Forms.DialogResult.OK && chsGrpForm.ChooseNames.Count > 0)
-                {
-                    ExportShedule exp = new ExportShedule();
-                    List<string> choosenGroups = chsGrpForm.ChooseNames;
-                    string resStr = "";
-                    foreach (string group in choosenGroups)
-                    {
-                        if(choosenGroups.IndexOf(group)==0)
-                        {
-                            resStr += group;
-                        }
-                        else 
-                        {
-                            resStr += ", " + group;
-                        }
-                    }
-
-                    dgvEducationLoad.Rows[dgvEducationLoad.CurrentCell.RowIndex].Cells[4].Value = resStr;
-                }
-
-                //dgvEducationLoad. = false;
-                dgvEducationLoad.Focus(); 
-            }
         }
 
         private void dgvEducationLoad_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
