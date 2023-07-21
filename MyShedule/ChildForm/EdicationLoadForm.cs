@@ -38,8 +38,10 @@ namespace MyShedule
         void EdicationLoadForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Сохранить перед закрытием? ", "внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == System.Windows.Forms.DialogResult.OK)
+            if (dr == DialogResult.OK)
+            {
                 Save();
+            }
         }
 
         private void InitGrid()
@@ -49,14 +51,6 @@ namespace MyShedule
             clmn.Name = "id";
             clmn.Visible = false;
             dgvEducationLoad.Columns.Add(clmn);
-
-            /*
-            clmn = new DataGridViewTextBoxColumn();
-            clmn.DataPropertyName = "Teacher";
-            clmn.Name = "teacher";
-            clmn.HeaderText = "Преподаватель";
-            dgvEducationLoad.Columns.Add(clmn);
-             */
 
             DataGridViewComboBoxColumn cmbClmn = new DataGridViewComboBoxColumn();
             cmbClmn.DataPropertyName = "Teacher";
@@ -108,6 +102,7 @@ namespace MyShedule
             bindingNavigator1.BindingSource = source;
             dgvEducationLoad.RowPrePaint+=new DataGridViewRowPrePaintEventHandler(dgvEducationLoad_RowPrePaint);
             dgvEducationLoad.RowHeadersWidth = 25;
+            this.checkEmptyCells();
         }
 
         private void dgvEducationLoad_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -139,8 +134,22 @@ namespace MyShedule
             Save();
         }
 
+
+        private void checkEmptyCells()
+        {
+            for (int i = 0; i < dgvEducationLoad.CurrentRow.Cells.Count; i++)
+            {
+                if (dgvEducationLoad.CurrentRow.Cells[i].Value.ToString().Length == 0)
+                {
+                    dgvEducationLoad.Rows.RemoveAt(i);
+                    dgvEducationLoad.Refresh();
+                }
+            }
+        }
+
         private void Save()
         {
+            this.checkEmptyCells();
             SaveFileDialog SaveDlg = new SaveFileDialog();
             SaveDlg.DefaultExt = "xml";
             SaveDlg.FileName = "Нагрузка.xml";
