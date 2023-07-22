@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ExcelInterop = Microsoft.Office.Interop.Excel;
 
 namespace MyShedule
 {
@@ -662,6 +663,30 @@ namespace MyShedule
         private void dgvShedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void copyAlltoClipboard()
+        {
+            dgvShedule.SelectAll();
+            DataObject dataObj = dgvShedule.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        private void ExportToExcel(object sender, EventArgs e)
+        {
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new ExcelInterop.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (ExcelInterop.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            ExcelInterop.Range CR = (ExcelInterop.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
         }
     }
 }

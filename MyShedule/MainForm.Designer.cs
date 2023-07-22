@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dgvShedule = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -51,6 +51,7 @@
             this.tsiExportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveSheduleToFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenSheduleFromFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.экспортВЭКСЕЛЬToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.cmbView = new System.Windows.Forms.ToolStripComboBox();
@@ -108,26 +109,26 @@
             // 
             // dgvShedule
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvShedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvShedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvShedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvShedule.Location = new System.Drawing.Point(0, 27);
             this.dgvShedule.Name = "dgvShedule";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvShedule.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvShedule.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvShedule.RowHeadersWidth = 51;
             this.dgvShedule.RowTemplate.Height = 28;
             this.dgvShedule.Size = new System.Drawing.Size(848, 324);
@@ -280,7 +281,8 @@
             this.tsbCreateShedule,
             this.tsiExportExcel,
             this.tsmiSaveSheduleToFile,
-            this.tsmiOpenSheduleFromFile});
+            this.tsmiOpenSheduleFromFile,
+            this.экспортВЭКСЕЛЬToolStripMenuItem});
             this.tsbShedule.Image = global::MyShedule.Properties.Resources.clock;
             this.tsbShedule.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbShedule.Name = "tsbShedule";
@@ -291,7 +293,7 @@
             // 
             this.tsbCreateClearShedule.Image = global::MyShedule.Properties.Resources.picture_empty;
             this.tsbCreateClearShedule.Name = "tsbCreateClearShedule";
-            this.tsbCreateClearShedule.Size = new System.Drawing.Size(242, 22);
+            this.tsbCreateClearShedule.Size = new System.Drawing.Size(246, 26);
             this.tsbCreateClearShedule.Text = "Создать пустое расписание";
             this.tsbCreateClearShedule.Click += new System.EventHandler(this.tsbCreateClearShedule_Click);
             // 
@@ -299,7 +301,7 @@
             // 
             this.tsbCreateShedule.Image = global::MyShedule.Properties.Resources.clock_play;
             this.tsbCreateShedule.Name = "tsbCreateShedule";
-            this.tsbCreateShedule.Size = new System.Drawing.Size(242, 22);
+            this.tsbCreateShedule.Size = new System.Drawing.Size(246, 26);
             this.tsbCreateShedule.Text = "Сгенерировать расписание";
             this.tsbCreateShedule.Click += new System.EventHandler(this.tsbCreateShedule_Click);
             // 
@@ -307,7 +309,7 @@
             // 
             this.tsiExportExcel.Image = global::MyShedule.Properties.Resources.page_white_word;
             this.tsiExportExcel.Name = "tsiExportExcel";
-            this.tsiExportExcel.Size = new System.Drawing.Size(242, 22);
+            this.tsiExportExcel.Size = new System.Drawing.Size(246, 26);
             this.tsiExportExcel.Text = "Экспорт в Word";
             this.tsiExportExcel.Click += new System.EventHandler(this.tsiExportExcel_Click);
             // 
@@ -315,7 +317,7 @@
             // 
             this.tsmiSaveSheduleToFile.Image = global::MyShedule.Properties.Resources.page_save1;
             this.tsmiSaveSheduleToFile.Name = "tsmiSaveSheduleToFile";
-            this.tsmiSaveSheduleToFile.Size = new System.Drawing.Size(242, 22);
+            this.tsmiSaveSheduleToFile.Size = new System.Drawing.Size(246, 26);
             this.tsmiSaveSheduleToFile.Text = "Сохранить расписание";
             this.tsmiSaveSheduleToFile.Click += new System.EventHandler(this.tsmiSaveSheduleToFile_Click);
             // 
@@ -323,9 +325,16 @@
             // 
             this.tsmiOpenSheduleFromFile.Image = global::MyShedule.Properties.Resources.clock_link;
             this.tsmiOpenSheduleFromFile.Name = "tsmiOpenSheduleFromFile";
-            this.tsmiOpenSheduleFromFile.Size = new System.Drawing.Size(242, 22);
+            this.tsmiOpenSheduleFromFile.Size = new System.Drawing.Size(246, 26);
             this.tsmiOpenSheduleFromFile.Text = "Открыть расписание из файла";
             this.tsmiOpenSheduleFromFile.Click += new System.EventHandler(this.tsmiOpenSheduleFromFile_Click);
+            // 
+            // экспортВЭКСЕЛЬToolStripMenuItem
+            // 
+            this.экспортВЭКСЕЛЬToolStripMenuItem.Name = "экспортВЭКСЕЛЬToolStripMenuItem";
+            this.экспортВЭКСЕЛЬToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.экспортВЭКСЕЛЬToolStripMenuItem.Text = "Экспорт в ЭКСЕЛЬ";
+            this.экспортВЭКСЕЛЬToolStripMenuItem.Click += new System.EventHandler(this.ExportToExcel);
             // 
             // toolStripSeparator1
             // 
@@ -529,7 +538,7 @@
             this.tabPage1.Controls.Add(this.lvDistribute);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(840, 88);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Состояния генерации";
@@ -553,7 +562,7 @@
             this.tabPage2.Controls.Add(this.btnExchangeLessons);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(840, 88);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Перемещение занятий";
@@ -806,7 +815,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiSaveSheduleToFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenSheduleFromFile;
         private System.Windows.Forms.ToolStripMenuItem tbsTeachers;
-
+        private System.Windows.Forms.ToolStripMenuItem экспортВЭКСЕЛЬToolStripMenuItem;
     }
 }
 
