@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ExcelInterop = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
+using Microsoft.Office.Interop.Access.Dao;
 
 namespace MyShedule
 {
@@ -675,18 +676,81 @@ namespace MyShedule
 
         private void ExportToExcel(object sender, EventArgs e)
         {
-            copyAlltoClipboard();
-            Microsoft.Office.Interop.Excel.Application xlexcel;
-            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-            xlexcel = new ExcelInterop.Application();
-            xlexcel.Visible = true;
-            xlWorkBook = xlexcel.Workbooks.Add(misValue);
-            xlWorkSheet = (ExcelInterop.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            ExcelInterop.Range CR = (ExcelInterop.Range)xlWorkSheet.Cells[1, 1];
-            CR.Select();
-            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+            string fileName;
+            try
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "xls files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveFileDialog1.Title = "Экспортировать в эксель";
+                saveFileDialog1.FileName = this.Text + " (" + DateTime.Now.ToString("yyyy-MM-dd") + ")";
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    fileName = saveFileDialog1.FileName;
+                    var workbook = new XLWorkbook();
+                    var worksheet = workbook.Worksheets.Add(this.Text);
+                    for (int i = 0; i < dgvShedule.Columns.Count; i++)
+                    {
+                        worksheet.Cell(1, i + 1).Value = dgvShedule.Columns[i].HeaderText;
+                    }
+
+                    for (int i = 0; i < dgvShedule.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgvShedule.Columns.Count; j++)
+                        {
+                            worksheet.Cell(i + 2, j + 1).Value = dgvShedule.Rows[i].Cells[j].Value.ToString();
+
+                            if (worksheet.Cell(i + 2, j + 1).Value.ToString().Length > 0)
+                            {
+                                XLAlignmentHorizontalValues align;
+
+                                switch (dgvShedule.Rows[i].Cells[j].Style.Alignment)
+                                {
+                                    case DataGridViewContentAlignment.BottomRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+                                    case DataGridViewContentAlignment.MiddleRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+                                    case DataGridViewContentAlignment.TopRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+
+                                    case DataGridViewContentAlignment.BottomCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+                                    case DataGridViewContentAlignment.MiddleCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+                                    case DataGridViewContentAlignment.TopCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+
+                                    default:
+                                        align = XLAlignmentHorizontalValues.Left;
+                                        break;
+                                }
+
+                                worksheet.Cell(i + 2, j + 1).Style.Alignment.Horizontal = align;
+
+                                XLColor xlColor = XLColor.FromColor(dgvShedule.Rows[i].Cells[j].Style.SelectionBackColor);
+                                worksheet.Cell(i + 2, j + 1).AddConditionalFormat().WhenLessThan(1).Fill.SetBackgroundColor(xlColor);
+
+                                worksheet.Cell(i + 2, j + 1).Style.Font.FontName = dgvShedule.Font.Name;
+                                worksheet.Cell(i + 2, j + 1).Style.Font.FontSize = dgvShedule.Font.Size;
+
+                            }
+                        }
+                    }
+                    workbook.SaveAs(fileName);
+                    MessageBox.Show("Расписание успешно экспортировано.");
+                }
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show("Файл с таким именем уже сущетсвует.");
+            }
+            
         }
     }
 }
