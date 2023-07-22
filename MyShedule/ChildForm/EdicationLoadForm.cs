@@ -80,7 +80,6 @@ namespace MyShedule
             clmn.HeaderText = "Группа";
             clmn.Width = 250;
             dgvEducationLoad.Columns.Add(clmn);
-           //dgvEducationLoad.DoubleClick += new EventHandler(dgvEducationLoad_DoubleClick);
 
             DataGridViewButtonColumn btnClmn = new DataGridViewButtonColumn();
             btnClmn.Width = 25;
@@ -113,7 +112,19 @@ namespace MyShedule
             bindingNavigator1.BindingSource = source;
             dgvEducationLoad.RowPrePaint+=new DataGridViewRowPrePaintEventHandler(dgvEducationLoad_RowPrePaint);
             dgvEducationLoad.RowHeadersWidth = 25;
-            
+            checkEmptyCells();
+
+        }
+        private void checkEmptyCells()
+        {
+            for (int i = 0; i < dgvEducationLoad.CurrentRow.Cells.Count; i++)
+            {
+                if (dgvEducationLoad.CurrentRow.Cells[i].Value == DBNull.Value)
+                {
+                    dgvEducationLoad.Rows.RemoveAt(i);
+                    dgvEducationLoad.Refresh();
+                }
+            }
         }
 
         void dgvEducationLoad_DoubleClick(object sender, EventArgs e)
@@ -179,6 +190,7 @@ namespace MyShedule
 
         private void Save()
         {
+            checkEmptyCells();
             SaveFileDialog SaveDlg = new SaveFileDialog();
             SaveDlg.DefaultExt = "xml";
             SaveDlg.FileName = "Нагрузка.xml";
