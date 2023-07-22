@@ -343,6 +343,16 @@ namespace MyShedule.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap page_white_excel {
+            get {
+                object obj = ResourceManager.GetObject("page_white_excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap page_white_word {
             get {
                 object obj = ResourceManager.GetObject("page_white_word", resourceCulture);
