@@ -26,6 +26,8 @@ namespace MyShedule
         public List<SheduleRoom> Rooms;
 
         public List<SheduleTeacher> Teachers;
+        public List<SheduleDiscipline> Disciplines;
+        public List<SheduleGroup> Groups;
 
         public bool BrushActive = false;
 
@@ -36,6 +38,8 @@ namespace MyShedule
             SheduleDataSet = new dsShedule();
             Rooms = new List<SheduleRoom>();
             Teachers = new List<SheduleTeacher>();
+            Disciplines = new List<SheduleDiscipline> ();
+            Groups = new List<SheduleGroup>();
 
             try
             {
@@ -68,6 +72,28 @@ namespace MyShedule
             catch (Exception)
             {
                 MessageBox.Show("Не могу открыть файл с преподавателями");
+            }
+
+            try
+            {
+                string filename = @"Дисциплины.xml";
+                SheduleDataSet.Discipline.ReadXml(filename);
+                Disciplines = DictionaryConverter.DisciplinesToList(SheduleDataSet);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не могу открыть файл с дисциплинами");
+            }
+
+            try
+            {
+                string filename = @"Группы.xml";
+                SheduleDataSet.Group.ReadXml(filename);
+                Groups = DictionaryConverter.GroupsToList(SheduleDataSet);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не могу открыть файл с группами");
             }
 
         }
@@ -238,7 +264,7 @@ namespace MyShedule
 
         private void tsbEducationLoad_Click(object sender, EventArgs e)
         {
-            EdicationLoadForm frmEdicationLoad = new EdicationLoadForm(Teachers);
+            EdicationLoadForm frmEdicationLoad = new EdicationLoadForm(Teachers, Disciplines, Groups);
             frmEdicationLoad.SheduleDataSet = SheduleDataSet;
             frmEdicationLoad.ShowDialog();
             EducationAdapter = new EducationLoadAdapter(DictionaryConverter.EducationToList(frmEdicationLoad.SheduleDataSet));
