@@ -251,5 +251,22 @@ namespace MyShedule
                 MessageBox.Show("Не могу открыть табель" + ex.Message);
             }
         }
+
+        private void dgvEducationLoad_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvEducationLoad.CurrentCell.ColumnIndex == 5)
+            {
+                e.Control.KeyPress += new KeyPressEventHandler(CheckKey);
+            }
+        }
+        private void CheckKey(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
