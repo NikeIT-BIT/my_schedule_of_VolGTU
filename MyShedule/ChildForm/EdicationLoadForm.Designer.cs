@@ -58,6 +58,7 @@
             this.dgvEducationLoad.Name = "dgvEducationLoad";
             this.dgvEducationLoad.Size = new System.Drawing.Size(764, 347);
             this.dgvEducationLoad.TabIndex = 0;
+            this.dgvEducationLoad.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvEducationLoad_EditingControlShowing);
             // 
             // bindingNavigator1
             // 
@@ -141,6 +142,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
