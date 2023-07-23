@@ -38,7 +38,7 @@ namespace MyShedule
             SetDisciplinesUI(cmbDiscipline1, Lesson1);
             SetDisciplinesUI(cmbDiscipline2, Lesson2);
 
-            SetRoomsUI(cmbRooms1,Lesson1,Time1);
+            SetRoomsUI(cmbRooms1, Lesson1, Time1);
             SetRoomsUI(cmbRooms2, Lesson2, Time2);
 
             SetLessonTypesUI(cmbTypeLesson1, Lesson1);
@@ -74,15 +74,15 @@ namespace MyShedule
         private void SetDatesUI(ListView dates, SheduleLesson lesson)
         {
             if (lesson == null)
-               return;
+                return;
 
             dates.Items.Clear();
             foreach (DateTime date in lesson.Dates)
             {
                 string title = String.Format("{0:dd} {0:MMMM} {0:yyyy}", date);
-                dates.Items.Add(new ListViewItem(title) { ImageIndex = 1, Tag = date } );
+                dates.Items.Add(new ListViewItem(title) { ImageIndex = 1, Tag = date });
             }
-            
+
         }
 
         private void SetGroupsUI(ListView ChooiceGroups, ListView AccessGroups,
@@ -121,10 +121,10 @@ namespace MyShedule
         {
             List<string> rooms = new List<string>();
             foreach (SheduleRoom room in Rooms)
-                if (Employments.Rooms.IsFree(room.Name, time)) 
+                if (Employments.Rooms.IsFree(room.Name, time))
                     rooms.Add(room.Name);
 
-            if (lesson != null) 
+            if (lesson != null)
                 rooms.Add(lesson.Room);
 
             BindingSource bs = new BindingSource();
@@ -215,13 +215,17 @@ namespace MyShedule
         private void btnAccept_Click(object sender, EventArgs e)
         {
 
-            if(Lesson1 != null)
-            Employments.Remove(Lesson1.Teacher, Lesson1.Groups, Lesson1.Room, Time1);
+            if (Lesson1 != null)
+                Employments.Remove(Lesson1.Teacher, Lesson1.Groups, Lesson1.Room, Time1);
 
             if (Lesson1 == null)
                 Lesson1 = Shedule.GetLesson(Time1, cmbRooms1.Text);
 
-            if (Lesson1 != null)
+            if (Lesson1 != null &&
+                cmbTypeLesson1.SelectedValue != null &&
+                cmbTeacher1.Text != "" &&
+                cmbRooms1.Text != "" &&
+                cmbDiscipline1.Text != "")
             {
 
                 Lesson1.Discipline = cmbDiscipline1.Text;
@@ -245,12 +249,16 @@ namespace MyShedule
 
             //-------------------------------------------
             if (Lesson2 != null)
-               Employments.Remove(Lesson2.Teacher, Lesson2.Groups, Lesson2.Room, Time2);
+                Employments.Remove(Lesson2.Teacher, Lesson2.Groups, Lesson2.Room, Time2);
 
             if (Lesson2 == null)
-               Lesson2 = Shedule.GetLesson(Time2, cmbRooms2.Text);
+                Lesson2 = Shedule.GetLesson(Time2, cmbRooms2.Text);
 
-            if (Lesson2 != null)
+            if (Lesson2 != null &&
+                cmbTypeLesson2.SelectedValue != null &&
+                cmbTeacher2.Text != "" &&
+                cmbRooms2.Text != "" &&
+                cmbDiscipline2.Text != "")
             {
 
                 Lesson2.Discipline = cmbDiscipline2.Text;
@@ -413,7 +421,7 @@ namespace MyShedule
             }
         }
 
-        public ListViewItem CurrentDate = new ListViewItem(); 
+        public ListViewItem CurrentDate = new ListViewItem();
 
         void lvDates1_SelectedIndexChanged(object sender, EventArgs e)
         {
