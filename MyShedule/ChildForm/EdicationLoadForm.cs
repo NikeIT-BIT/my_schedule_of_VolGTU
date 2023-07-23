@@ -117,14 +117,26 @@ namespace MyShedule
         }
         private void checkEmptyCells()
         {
-            for (int i = 0; i < dgvEducationLoad.CurrentRow.Cells.Count; i++)
+            List<int> emptyRowIndexs = new List<int>();
+            for (int curRow = 0; curRow < dgvEducationLoad.RowCount; ++curRow)
             {
-                if (dgvEducationLoad.CurrentRow.Cells[i].Value == DBNull.Value)
+                for (int i = 0; i < dgvEducationLoad.Rows[curRow].Cells.Count; i++)
                 {
-                    dgvEducationLoad.Rows.RemoveAt(i);
-                    dgvEducationLoad.Refresh();
+                    if (dgvEducationLoad.Rows[curRow].Cells[i].Value == DBNull.Value &&
+                        dgvEducationLoad.Rows[curRow].IsNewRow == false)
+                    {
+                        dgvEducationLoad.Rows[curRow].Selected = true;
+                        emptyRowIndexs.Add(curRow);
+                        break;
+                    }
                 }
             }
+            int cntDeleted = 0;
+            foreach (int ind in emptyRowIndexs)
+            {
+                dgvEducationLoad.Rows.RemoveAt(ind - cntDeleted++);
+            }
+            dgvEducationLoad.Refresh();
         }
 
         void dgvEducationLoad_DoubleClick(object sender, EventArgs e)
