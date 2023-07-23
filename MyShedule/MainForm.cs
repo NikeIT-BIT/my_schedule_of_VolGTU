@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Yogesh.ExcelXml;
 using System.IO;
+using ClosedXML.Excel;
 
 namespace MyShedule
 {
@@ -705,158 +705,80 @@ namespace MyShedule
 
         private void tsiExport_Excel_Click(object sender, EventArgs e)
         {
-            SaveFileDialog frmSave = new SaveFileDialog();
-            frmSave.Filter = "(*.xls)|*.xls";
-            frmSave.FileName = "shcedule1.xls";
-            if (frmSave.ShowDialog() == DialogResult.OK && frmSave.FileName != "")
+            string fileName;
+            try
             {
-                // Проверяем наличие файла
-                if (File.Exists(frmSave.FileName) == true)
+                
+                SaveFileDialog newExcelFile = new SaveFileDialog();
+                newExcelFile.Filter = "xls files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                newExcelFile.Title = "Экспортировать в эксель";
+                newExcelFile.FileName = this.cmbView.Text + " (" + DateTime.Now.ToString("yyyy-MM-dd") + ")";
+
+                if (newExcelFile.ShowDialog() == DialogResult.OK)
                 {
-                    try
+                    fileName = newExcelFile.FileName;
+                    var workbook = new XLWorkbook();
+                    var worksheet = workbook.Worksheets.Add(this.Text);
+                    for (int indexColoumn = 0; indexColoumn < dgvShedule.Columns.Count; indexColoumn++)
                     {
-                        File.Delete(frmSave.FileName);
+                        worksheet.Cell(1, indexColoumn + 1).Value = dgvShedule.Columns[indexColoumn].HeaderText;
                     }
-                    catch (Exception ex)
+
+                    for (int i = 0; i < dgvShedule.Rows.Count; i++)
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-
-                ExcelXmlWorkbook book = new ExcelXmlWorkbook();
-
-                Worksheet sheet = book[0];
-
-                string sheetName = frmSave.FileName.ToString();
-                sheet.Name = sheetName.Substring(sheetName.LastIndexOf("\\") + 1,
-                    sheetName.IndexOf(".") - sheetName.LastIndexOf("\\") - 1);
-
-                sheet.FreezeTopRows = 1;
-                sheet.FreezeLeftColumns = 2;
-
-                sheet.PrintOptions.Orientation = PageOrientation.Landscape;
-                sheet.PrintOptions.SetMargins(0.5, 0.4, 0.5, 0.4);
-                AlignmentOptionsBase alOpt = (AlignmentOptionsBase)sheet.Alignment;
-                alOpt.Horizontal = Yogesh.ExcelXml.HorizontalAlignment.Center;
-                alOpt.ShrinkToFit = true;
-                alOpt.Vertical = VerticalAlignment.Center;
-                alOpt.WrapText = true;
-
-                sheet[0, 0].Value = "";
-                sheet[1, 0].Value = dgvShedule.Columns[1].HeaderText;
-
-                AlignmentOptionsBase alOpt1 = (AlignmentOptionsBase)sheet[1, 0].Alignment;
-                alOpt1.Horizontal = Yogesh.ExcelXml.HorizontalAlignment.Center;
-                alOpt1.ShrinkToFit = true;
-                alOpt1.Vertical = VerticalAlignment.Center;
-                alOpt1.WrapText = true;
-
-                BorderOptionsBase brOpt1= (BorderOptionsBase)sheet[1, 0].Border;
-                brOpt1.Color = Color.Black;
-                brOpt1.Sides = BorderSides.All;
-
-                int counter=2;
-                foreach (string group in EducationAdapter.NamesGroups)
-                {
-                    sheet[counter, 0].Value = group;
-                    
-                    AlignmentOptionsBase alOpt2 = (AlignmentOptionsBase)sheet[counter, 0].Alignment;
-                    alOpt2.Horizontal = Yogesh.ExcelXml.HorizontalAlignment.Center;
-                    alOpt2.ShrinkToFit = true;
-                    alOpt2.Vertical = VerticalAlignment.Center;
-                    alOpt2.WrapText = true;
-
-                    BorderOptionsBase brOpt2 = (BorderOptionsBase)sheet[counter, 0].Border;
-                    brOpt2.Color = Color.Black;
-                    brOpt2.Sides = BorderSides.All;
-                    counter++;
-                }
-
-                //foreach (DataGridViewRow row in dgvShedule.Rows)
-                //{
-                //    InteriorOptionsBase intColOpt = (InteriorOptionsBase)sheet[0, row.Index + 1].Interior;
-                //    intColOpt.Color = dgvShedule.Columns[0].InheritedStyle.BackColor;
-                //    intColOpt = (InteriorOptionsBase)sheet[1, row.Index + 1].Interior;
-                //    intColOpt.Color = dgvShedule.Columns[1].InheritedStyle.BackColor;
-                //    intColOpt = (InteriorOptionsBase)sheet[7, row.Index + 1].Interior;
-                //    intColOpt.Color = dgvShedule.Columns[7].InheritedStyle.BackColor;
-                //    intColOpt = (InteriorOptionsBase)sheet[13, row.Index + 1].Interior;
-                //    intColOpt.Color = dgvShedule.Columns[13].InheritedStyle.BackColor;
-                //}
-
-                int maxLessons = Shedule.Setting.CountLessonsOfDay;
-                for (int i = 0; i < Shedule.Setting.CountDaysEducationWeek*2; i++)
-                {
-                    Range range = new Range(sheet[0, i * maxLessons + 1],
-                        sheet[0, i * maxLessons + (maxLessons - 1) + 1]);
-                    range.Merge();
-                    BorderOptionsBase brOptR = (BorderOptionsBase)range.Border;
-                    brOptR.Color = Color.Black;
-                    brOptR.Sides = BorderSides.All;
-
-                    sheet[0, i * maxLessons + 1].Value = dgvShedule.Columns[i + 2].HeaderText;
-                    AlignmentOptionsBase alOptR = (AlignmentOptionsBase)sheet[0, i * maxLessons + 1].Alignment;
-                    alOptR.Rotate = 90;
-                }
-
-                for(int i = 0; i<2; i++)
-                {
-                    foreach (DataGridViewRow row in dgvShedule.Rows)
-                    {
-                        sheet[1, row.Index + 1 + (maxLessons * Shedule.Setting.CountDaysEducationWeek * i)].Value 
-                            = row.Cells[1].Value;
-                        BorderOptionsBase brOptC = (BorderOptionsBase)sheet[1, 
-                            row.Index + 1 + (maxLessons * Shedule.Setting.CountDaysEducationWeek * i)].Border;
-                        brOptC.Color = Color.Black;
-                        brOptC.Sides = BorderSides.All;
-                    }
-                }
-
-                int oldI = 0;
-                int oldJ;
-                int starter = oldI;
-                for(int i = 2; i<EducationAdapter.NamesGroups.Count+2; i++)
-                {
-                    oldJ = 2;
-                    for(int j = 1; j<maxLessons*Shedule.Setting.CountDaysEducationWeek*2+1; j++)
-                    {
-                        sheet[i,j].Value = dgvShedule[oldJ,oldI].Value;
-                        BorderOptionsBase brOptC = (BorderOptionsBase)sheet[i, j].Border;
-                        brOptC.Color = Color.Black;
-                        brOptC.Sides = BorderSides.All;
-
-                        if (oldI == maxLessons + starter - 1)
+                        for (int j = 0; j < dgvShedule.Columns.Count; j++)
                         {
-                            oldI = starter;
-                            oldJ++;
+                            worksheet.Cell(i + 2, j + 1).Value = dgvShedule.Rows[i].Cells[j].Value.ToString();
+
+                            if (worksheet.Cell(i + 2, j + 1).Value.ToString().Length > 0)
+                            {
+                                XLAlignmentHorizontalValues align;
+
+                                switch (dgvShedule.Rows[i].Cells[j].Style.Alignment)
+                                {
+                                    case DataGridViewContentAlignment.BottomRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+                                    case DataGridViewContentAlignment.MiddleRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+                                    case DataGridViewContentAlignment.TopRight:
+                                        align = XLAlignmentHorizontalValues.Right;
+                                        break;
+
+                                    case DataGridViewContentAlignment.BottomCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+                                    case DataGridViewContentAlignment.MiddleCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+                                    case DataGridViewContentAlignment.TopCenter:
+                                        align = XLAlignmentHorizontalValues.Center;
+                                        break;
+
+                                    default:
+                                        align = XLAlignmentHorizontalValues.Left;
+                                        break;
+                                }
+
+                                worksheet.Cell(i + 2, j + 1).Style.Alignment.Horizontal = align;
+
+                                XLColor xlColor = XLColor.FromColor(dgvShedule.Rows[i].Cells[j].Style.SelectionBackColor);
+                                worksheet.Cell(i + 2, j + 1).AddConditionalFormat().WhenLessThan(1).Fill.SetBackgroundColor(xlColor);
+
+                                worksheet.Cell(i + 2, j + 1).Style.Font.FontName = dgvShedule.Font.Name;
+                                worksheet.Cell(i + 2, j + 1).Style.Font.FontSize = dgvShedule.Font.Size;
+
+                            }
                         }
-                        else
-                            oldI++;
                     }
-                    starter += maxLessons;
-                    oldI = starter;
+                    workbook.SaveAs(fileName);
+                    MessageBox.Show("Расписание успешно экспортировано.");
                 }
-
-                for(int i=0; i<EducationAdapter.NamesGroups.Count+2; i++)
-                {
-                    string header = dgvShedule.Columns[i].HeaderText.ToString();
-                    if (i == 0 || i == 1)
-                    {
-                        sheet[0].Height = 45;
-                        sheet.Columns(i).Width = 6 * header.Length + 8;
-                    }
-                    else
-                    {
-                        sheet.Columns(i).Width = 3 * header.Length + 4;
-                    }
-                }
-
-                for(int i=1; i<maxLessons*Shedule.Setting.CountDaysEducationWeek*2+1; i++)
-                {
-                    sheet[i].Height = 80;
-                }
-
-                book.Export(frmSave.FileName);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Файл с таким именем уже сущетсвует и в данный момент открыт, если хотите перезаписать его, то закройте уже открытй файл.");
             }
         }
 
