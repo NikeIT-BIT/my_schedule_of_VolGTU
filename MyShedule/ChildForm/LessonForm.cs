@@ -32,8 +32,6 @@ namespace MyShedule
         {
             InitControlsForm();
 
-            //SetTeachersUI();
-
             SetTeachersUI(cmbTeacher1, Lesson1, Time1);
             SetTeachersUI(cmbTeacher2, Lesson2, Time2);
 
@@ -88,7 +86,7 @@ namespace MyShedule
         }
 
         private void SetGroupsUI(ListView ChooiceGroups, ListView AccessGroups,
-            SheduleLesson lesson, SheduleTime time)
+                                 SheduleLesson lesson, SheduleTime time)
         {
             List<string> AccGroups = new List<string>();
             List<string> ChcGroups = new List<string>();
@@ -123,11 +121,12 @@ namespace MyShedule
         {
             List<string> rooms = new List<string>();
             foreach (SheduleRoom room in Rooms)
-                if (Employments.Rooms.IsFree(room.Name, time))
+                if (Employments.Rooms.IsFree(room.Name, time)) 
                     rooms.Add(room.Name);
 
-            if (lesson != null)
+            if (lesson != null) 
                 rooms.Add(lesson.Room);
+
             BindingSource bs = new BindingSource();
             bs.DataSource = rooms;
             cmb.DataSource = bs;
@@ -155,6 +154,7 @@ namespace MyShedule
 
             if (lesson != null)
                 Teachers.Add(lesson.Teacher);
+
             BindingSource bs = new BindingSource();
             bs.DataSource = Teachers;
             cmb.DataSource = bs;
@@ -272,14 +272,14 @@ namespace MyShedule
                 Employments.Add(Lesson2.Teacher, Lesson2.Groups, Lesson2.Room, Time2, ReasonEmployment.UnionLesson);
             }
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
 
             this.Close();
         }
 
         private void btnReject_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
 
             this.Close();
         }
@@ -342,12 +342,15 @@ namespace MyShedule
             {
                 if (CurrentDate.Text != "")
                 {
-                    DateTime date = Convert.ToDateTime(CurrentDate.Text);
-                    CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
-                    for (int i = 0; i < Lesson1.Dates.Count; i++)
+                    if (Lesson1 != null)
                     {
-                        if (Lesson1.Dates[i] == date)
-                            Lesson1.Dates[i] = dtpDate1.Value;
+                        DateTime date = Convert.ToDateTime(CurrentDate.Text);
+                        CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
+                        for (int i = 0; i < Lesson1.Dates.Count; i++)
+                        {
+                            if (Lesson1.Dates[i] == date)
+                                Lesson1.Dates[i] = dtpDate1.Value;
+                        }
                     }
                 }
             }
@@ -382,12 +385,15 @@ namespace MyShedule
             {
                 if (CurrentDate.Text != "")
                 {
-                    DateTime date = Convert.ToDateTime(CurrentDate.Text);
-                    CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
-                    for (int i = 0; i < Lesson1.Dates.Count; i++)
+                    if (Lesson2 != null)
                     {
-                        if (Lesson2.Dates[i] == date)
-                            Lesson2.Dates[i] = dtpDate2.Value;
+                        DateTime date = Convert.ToDateTime(CurrentDate.Text);
+                        CurrentDate.Text = String.Format("{0:dd} {0:MMMM} {0:yyyy}", dtpDate1.Value);
+                        for (int i = 0; i < Lesson1.Dates.Count; i++)
+                        {
+                            if (Lesson2.Dates[i] == date)
+                                Lesson2.Dates[i] = dtpDate2.Value;
+                        }
                     }
                 }
             }
