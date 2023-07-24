@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using ClosedXML.Excel;
+using Yogesh.Extensions;
 
 namespace MyShedule
 {
@@ -543,17 +544,20 @@ namespace MyShedule
                 Shedule.GetLesson(time1, item2.Room).UpdateFields(item2.Teacher, item2.Discipline, item2.Groups, item2.Type, item2.Dates);
                 Shedule.GetLesson(time2, item1.Room).UpdateFields(item1.Teacher, item1.Discipline, item1.Groups, item1.Type, item1.Dates);
             }
-            else if (item1 == null && item2 != null)
+            else if (!(time1 is null) && !(time2 is null))
             {
-                SheduleLesson lsn = Shedule.GetLesson(time1, item2.Room).Copy();
-                Shedule.GetLesson(time1, item2.Room).UpdateFields(item2.Teacher, item2.Discipline, item2.Groups, item2.Type, lsn.Dates);
-                item2.Clear();
-            }
-            else if (item1 != null && item2 == null)
-            {
-                SheduleLesson lsn = Shedule.GetLesson(time2, item1.Room).Copy();
-                Shedule.GetLesson(time2, item1.Room).UpdateFields(item1.Teacher, item1.Discipline, item1.Groups, item1.Type, lsn.Dates);
-                item1.Clear();
+                if (item1 == null && item2 != null)
+                {
+                    SheduleLesson lsn = Shedule.GetLesson(time1, item2.Room).Copy();
+                    Shedule.GetLesson(time1, item2.Room).UpdateFields(item2.Teacher, item2.Discipline, item2.Groups, item2.Type, lsn.Dates);
+                    item2.Clear();
+                }
+                else if (item1 != null && item2 == null)
+                {
+                    SheduleLesson lsn = Shedule.GetLesson(time2, item1.Room).Copy();
+                    Shedule.GetLesson(time2, item1.Room).UpdateFields(item1.Teacher, item1.Discipline, item1.Groups, item1.Type, lsn.Dates);
+                    item1.Clear();
+                }
             }
         }
 
