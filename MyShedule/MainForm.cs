@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.IO;
 using ClosedXML.Excel;
 using Yogesh.Extensions;
+using MyShedule.SheduleClasses;
+using MySql.Data.MySqlClient;
+using SD = System.Data;
 
 namespace MyShedule
 {
@@ -783,6 +786,138 @@ namespace MyShedule
             catch (Exception error)
             {
                 MessageBox.Show("Файл с таким именем уже сущетсвует и в данный момент открыт, если хотите перезаписать его, то закройте уже открытй файл.");
+            }
+        }
+
+        private void addShedule()
+        {
+            var dateTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var addSheduleScript = $"INSERT INTO `shedules` (`date`)" + $"values ('{dateTime}')";
+            using (MySqlDataAdapter shedule = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable sheduleTable = new SD.DataTable())
+                {
+                    shedule.Fill(sheduleTable);
+                }
+            }
+        }
+
+        private int getLastSheduleID()
+        {
+            int lastSheduleID = 0;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(SheduleClasses.Connect.connect))
+                {
+                    connection.Open();
+                    var addSheduleScript = "SELECT id FROM shedules ORDER BY ID DESC LIMIT 1;";
+
+                    using (MySqlCommand command = new MySqlCommand(addSheduleScript, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Чтение значения ID из результирующего набора
+                                lastSheduleID = reader.GetInt32(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка при получении ID расписания: " + ex.Message);
+            }
+
+            return lastSheduleID;
+        }
+
+        private void addGroup(int idShedule, string nameGroup)
+        {
+            var addSheduleScript = $"INSERT INTO `groups` (`shedule_id`,`Name`)" + $"values ('{idShedule}','{nameGroup}')";
+            using (MySqlDataAdapter group = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable groupTable = new SD.DataTable())
+                {
+                    group.Fill(groupTable);
+                }
+            }
+        }
+
+        private int getLastGroupID()
+        {
+            int lastGroupID = 0;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(SheduleClasses.Connect.connect))
+                {
+                    connection.Open();
+                    var addSheduleScript = "SELECT id FROM shedules ORDER BY ID DESC LIMIT 1;";
+
+                    using (MySqlCommand command = new MySqlCommand(addSheduleScript, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Чтение значения ID из результирующего набора
+                                lastGroupID = reader.GetInt32(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка при получении ID расписания: " + ex.Message);
+            }
+
+            return lastGroupID;
+        }
+
+        private void addLesson(int idGroup, string nameGroup, string dateTime, string hours, string type, string discipline, string teacher, string room)
+        {
+            var addSheduleScript = $"SET FOREIGN_KEY_CHECKS=0;INSERT INTO `lessons` (`id_group`,`name_group`,`date_time`,`hours`,`type`,`discipline`,`teacher`,`room`)" + $"values ('{idGroup}','{nameGroup}','{dateTime}','{hours}','{type}','{discipline}','{teacher}','{room}')";
+            using (MySqlDataAdapter group = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable groupTable = new SD.DataTable())
+                {
+                    group.Fill(groupTable);
+                }
+            }
+        }
+
+        private void exportDb(object sender, EventArgs e)
+        {
+            try
+            {
+            SheduleClasses.Connect.mycon = new MySqlConnection(SheduleClasses.Connect.connect);
+            SheduleClasses.Connect.mycon.Open();
+            addShedule();
+            var idShedule = getLastSheduleID();
+            foreach (var group in SheduleDataSet.Group)
+            {
+                addGroup(idShedule, group.Name);
+                var idGroup = getLastGroupID();
+                var lessons = Shedule.GetLessonsGroup(group.Name).ToList();
+                foreach (var lesson in lessons)
+                {
+                    foreach (var dateLs in lesson.Dates)
+                    {
+                        String hour = lesson.Time.Description.Split(' ')[3];
+                        addLesson(idGroup, group.Name, dateLs.ToString("yyyy-MM-dd HH:mm:ss"), hour, lesson.Type.ToString(), lesson.Discipline, lesson.Teacher, lesson.Room);
+                    }
+                }
+            }
+            MessageBox.Show("Экспорт расписания прошел успешно!");
+            Connect.mycon.Close();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Ошибка добавления расписания в БД");
             }
         }
 
