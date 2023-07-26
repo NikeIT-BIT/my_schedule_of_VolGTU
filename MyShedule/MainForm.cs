@@ -9,6 +9,11 @@ using System.Windows.Forms;
 using System.IO;
 using ClosedXML.Excel;
 using Yogesh.Extensions;
+using MyShedule.SheduleClasses;
+using MySql.Data.MySqlClient;
+using SD = System.Data;
+using Org.BouncyCastle.Crypto.Engines;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace MyShedule
 {
@@ -520,7 +525,13 @@ namespace MyShedule
         public SheduleTime T2;
         public SheduleTime T3;
         public SheduleTime T4;
-
+        private int coloumnIndLs1;
+        private int rowIndLs1;
+        private int coloumnIndLs2;
+        private int rowIndLs2;
+        private DataGridViewCell c1;
+        private DataGridViewCell c2;
+        private bool isFirstTime = true;
         private void button1_Click(object sender, EventArgs e)
         {
             NumSelectLesson = 1;
@@ -533,6 +544,8 @@ namespace MyShedule
 
         private void ExchangeLessons(SheduleLesson item1, SheduleLesson item2, SheduleTime time1, SheduleTime time2)
         {
+            if(c1 == c2 && isFirstTime)
+            { return; }
             if (item1 != null && item2 != null)
             {
                 SheduleLesson tmp1 = item1.Copy();
@@ -540,9 +553,16 @@ namespace MyShedule
                 item1.Dates = item2.Dates;
                 item2.Time = tmp1.Time.Copy();
                 item2.Dates = tmp1.Dates;
-
+                DataGridViewCell c3;
                 Shedule.GetLesson(time1, item2.Room).UpdateFields(item2.Teacher, item2.Discipline, item2.Groups, item2.Type, item2.Dates);
                 Shedule.GetLesson(time2, item1.Room).UpdateFields(item1.Teacher, item1.Discipline, item1.Groups, item1.Type, item1.Dates);
+                if(isFirstTime)
+                {
+                    c3 = c1;
+                    c1 = c2;
+                    c2 = c3;
+                }
+
             }
             else if (!(time1 is null) && !(time2 is null))
             {
@@ -550,22 +570,58 @@ namespace MyShedule
                 {
                     SheduleLesson lsn = Shedule.GetLesson(time1, item2.Room).Copy();
                     Shedule.GetLesson(time1, item2.Room).UpdateFields(item2.Teacher, item2.Discipline, item2.Groups, item2.Type, lsn.Dates);
+                    if(isFirstTime) c2 = c1;
+                    
                     item2.Clear();
                 }
                 else if (item1 != null && item2 == null)
                 {
                     SheduleLesson lsn = Shedule.GetLesson(time2, item1.Room).Copy();
                     Shedule.GetLesson(time2, item1.Room).UpdateFields(item1.Teacher, item1.Discipline, item1.Groups, item1.Type, lsn.Dates);
+                    if (isFirstTime) c1 = c2;
                     item1.Clear();
                 }
+                isFirstTime = false;
             }
         }
 
         private void btnExchangeLessons_Click(object sender, EventArgs e)
         {
-            ExchangeLessons(L1, L3, T1, T3);
-            ExchangeLessons(L2, L4, T2, T4);
-            UpdateTableShedule();
+            try
+            {
+                isFirstTime = true;
+                c1 = dgvShedule.Rows[rowIndLs1].Cells[coloumnIndLs1];
+                c2 = dgvShedule.Rows[rowIndLs2].Cells[coloumnIndLs2];
+
+                ExchangeLessons(L1, L3, T1, T3);
+                if (c1 == c2)
+                {
+                    rowIndLs1 = rowIndLs2;
+                    coloumnIndLs1 = coloumnIndLs2;
+                }
+                else 
+                {
+                    int bufferIndex = rowIndLs1;
+                    rowIndLs1 = rowIndLs2;
+                    rowIndLs2 = bufferIndex;
+                    bufferIndex = coloumnIndLs1;
+                    coloumnIndLs1 = coloumnIndLs2;
+                    coloumnIndLs2 = bufferIndex;
+                }
+                ExchangeLessons(L2, L4, T2, T4);
+
+                UpdateTableShedule();
+                c1 = dgvShedule.Rows[rowIndLs1].Cells[coloumnIndLs1];
+                c2 = dgvShedule.Rows[rowIndLs2].Cells[coloumnIndLs2];
+                NumSelectLesson = 1;
+                ViewSelectLesson(c1);
+                NumSelectLesson = 2;
+                ViewSelectLesson(c2);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Выберете две ячейки, которые вы хотели бы поменять.");
+            }
         }
 
         private void SetDataSelectLessonForm(SheduleLesson item1, SheduleLesson item2, Label txtTeacher, Label txtDiscipline,
@@ -597,7 +653,8 @@ namespace MyShedule
             if (NumSelectLesson == 1)
             {
                 SetDataSelectLessonForm(lesson1, lesson2, txtTeacher1, txtDiscipline1, txtRoom1, txtTypeLesson1);
-
+                coloumnIndLs1 = cell.ColumnIndex;
+                rowIndLs1 = cell.RowIndex;
                 L1 = lesson1;
                 L2 = lesson2;
                 T1 = Tag.Time1.Copy();
@@ -606,7 +663,8 @@ namespace MyShedule
             else if (NumSelectLesson == 2)
             {
                 SetDataSelectLessonForm(lesson1, lesson2, txtTeacher2, txtDiscipline2, txtRoom2, txtTypeLesson2);
-
+                coloumnIndLs2 = cell.ColumnIndex;
+                rowIndLs2 = cell.RowIndex;
                 L3 = lesson1;
                 L4 = lesson2;
                 T3 = Tag.Time1.Copy();
@@ -712,7 +770,6 @@ namespace MyShedule
             string fileName;
             try
             {
-                
                 SaveFileDialog newExcelFile = new SaveFileDialog();
                 newExcelFile.Filter = "xls files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
                 newExcelFile.Title = "Экспортировать в эксель";
@@ -727,13 +784,11 @@ namespace MyShedule
                     {
                         worksheet.Cell(1, indexColoumn + 1).Value = dgvShedule.Columns[indexColoumn].HeaderText;
                     }
-
                     for (int i = 0; i < dgvShedule.Rows.Count; i++)
                     {
                         for (int j = 0; j < dgvShedule.Columns.Count; j++)
                         {
                             worksheet.Cell(i + 2, j + 1).Value = dgvShedule.Rows[i].Cells[j].Value.ToString();
-
                             if (worksheet.Cell(i + 2, j + 1).Value.ToString().Length > 0)
                             {
                                 XLAlignmentHorizontalValues align;
@@ -759,20 +814,15 @@ namespace MyShedule
                                     case DataGridViewContentAlignment.TopCenter:
                                         align = XLAlignmentHorizontalValues.Center;
                                         break;
-
                                     default:
                                         align = XLAlignmentHorizontalValues.Left;
                                         break;
                                 }
-
                                 worksheet.Cell(i + 2, j + 1).Style.Alignment.Horizontal = align;
-
                                 XLColor xlColor = XLColor.FromColor(dgvShedule.Rows[i].Cells[j].Style.SelectionBackColor);
                                 worksheet.Cell(i + 2, j + 1).AddConditionalFormat().WhenLessThan(1).Fill.SetBackgroundColor(xlColor);
-
                                 worksheet.Cell(i + 2, j + 1).Style.Font.FontName = dgvShedule.Font.Name;
                                 worksheet.Cell(i + 2, j + 1).Style.Font.FontSize = dgvShedule.Font.Size;
-
                             }
                         }
                     }
@@ -783,6 +833,138 @@ namespace MyShedule
             catch (Exception error)
             {
                 MessageBox.Show("Файл с таким именем уже сущетсвует и в данный момент открыт, если хотите перезаписать его, то закройте уже открытй файл.");
+            }
+        }
+
+        private void addShedule()
+        {
+            var dateTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var addSheduleScript = $"INSERT INTO `shedules` (`date`)" + $"values ('{dateTime}')";
+            using (MySqlDataAdapter shedule = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable sheduleTable = new SD.DataTable())
+                {
+                    shedule.Fill(sheduleTable);
+                }
+            }
+        }
+
+        private int getLastSheduleID()
+        {
+            int lastSheduleID = 0;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(SheduleClasses.Connect.connect))
+                {
+                    connection.Open();
+                    var addSheduleScript = "SELECT id FROM shedules ORDER BY ID DESC LIMIT 1;";
+
+                    using (MySqlCommand command = new MySqlCommand(addSheduleScript, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Чтение значения ID из результирующего набора
+                                lastSheduleID = reader.GetInt32(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка при получении ID расписания: " + ex.Message);
+            }
+
+            return lastSheduleID;
+        }
+
+        private void addGroup(int idShedule, string nameGroup)
+        {
+            var addSheduleScript = $"INSERT INTO `groups` (`shedule_id`,`Name`)" + $"values ('{idShedule}','{nameGroup}')";
+            using (MySqlDataAdapter group = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable groupTable = new SD.DataTable())
+                {
+                    group.Fill(groupTable);
+                }
+            }
+        }
+
+        private int getLastGroupID()
+        {
+            int lastGroupID = 0;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(SheduleClasses.Connect.connect))
+                {
+                    connection.Open();
+                    var addSheduleScript = "SELECT id FROM example_app.groups ORDER BY ID DESC LIMIT 1;";
+
+                    using (MySqlCommand command = new MySqlCommand(addSheduleScript, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Чтение значения ID из результирующего набора
+                                lastGroupID = reader.GetInt32(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка при получении ID расписания: " + ex.Message);
+            }
+
+            return lastGroupID;
+        }
+
+        private void addLesson(int idGroup, string nameGroup, string dateTime, string hours, string type, string discipline, string teacher, string room)
+        {
+            var addSheduleScript = $"SET FOREIGN_KEY_CHECKS=0;INSERT INTO `lessons` (`id_group`,`name_group`,`date_time`,`hours`,`type`,`discipline`,`teacher`,`room`)" + $"values ('{idGroup}','{nameGroup}','{dateTime}','{hours}','{type}','{discipline}','{teacher}','{room}')";
+            using (MySqlDataAdapter group = new MySqlDataAdapter(addSheduleScript, SheduleClasses.Connect.connect))
+            {
+                using (SD.DataTable groupTable = new SD.DataTable())
+                {
+                    group.Fill(groupTable);
+                }
+            }
+        }
+
+        private void exportDb(object sender, EventArgs e)
+        {
+            try
+            {
+            SheduleClasses.Connect.mycon = new MySqlConnection(SheduleClasses.Connect.connect);
+            SheduleClasses.Connect.mycon.Open();
+            addShedule();
+            var idShedule = getLastSheduleID();
+            foreach (var group in SheduleDataSet.Group)
+            {
+                addGroup(idShedule, group.Name);
+                var idGroup = getLastGroupID();
+                var lessons = Shedule.GetLessonsGroup(group.Name).ToList();
+                foreach (var lesson in lessons)
+                {
+                    foreach (var dateLs in lesson.Dates)
+                    {
+                        String hour = lesson.Time.Description.Split(' ')[3];
+                        addLesson(idGroup, group.Name, dateLs.ToString("yyyy-MM-dd HH:mm:ss"), hour, lesson.Type.ToString(), lesson.Discipline, lesson.Teacher, lesson.Room);
+                    }
+                }
+            }
+            MessageBox.Show("Экспорт расписания прошел успешно!");
+            Connect.mycon.Close();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Ошибка добавления расписания в БД");
             }
         }
 
