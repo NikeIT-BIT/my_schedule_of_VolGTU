@@ -902,7 +902,7 @@ namespace MyShedule
                 using (MySqlConnection connection = new MySqlConnection(SheduleClasses.Connect.connect))
                 {
                     connection.Open();
-                    var addSheduleScript = "SELECT id FROM shedules ORDER BY ID DESC LIMIT 1;";
+                    var addSheduleScript = "SELECT id FROM example_app.groups ORDER BY ID DESC LIMIT 1;";
 
                     using (MySqlCommand command = new MySqlCommand(addSheduleScript, connection))
                     {
